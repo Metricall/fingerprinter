@@ -3,11 +3,14 @@
  */
 package metricalfingerprint;
 
+import java.lang.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.util.List;
@@ -39,13 +42,9 @@ public class MetricalFingerprint extends Application {
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
-    
 
     public class FingerprintPane extends Pane {
 
@@ -56,13 +55,16 @@ public class MetricalFingerprint extends Application {
 
             WebView view = new WebView();
             view.setContextMenuEnabled(false);
+            view.addEventFilter(KeyEvent.ANY, KeyEvent::consume);
             view.setMinSize(500, 400);
             view.setPrefSize(500, 400);
             final WebEngine eng = view.getEngine();
             eng.load("http://metrical.name/findex.php");
             final TextField userid = new TextField("");
+            userid.setPromptText("fill in identity");
             userid.setMaxHeight(Double.MAX_VALUE);
             final TextField loc = new TextField("");
+            loc.setPromptText("location here");
             loc.setMaxHeight(Double.MAX_VALUE);
             Button goButton = new Button("Go");
             goButton.setDefaultButton(true);
