@@ -33,6 +33,8 @@ public class MetricalFingerprint extends Application {
     
     @Override public void start(Stage primaryStage) throws Exception {
         Pane root = new FingerprintPane();
+        primaryStage.setMaximized(true);
+        //primaryStage.setFullScreen(true);
         primaryStage.setScene(new Scene(root, 1024, 768));
         primaryStage.show();
     }
@@ -53,13 +55,14 @@ public class MetricalFingerprint extends Application {
             setMaxHeight(Double.MAX_VALUE);
 
             WebView view = new WebView();
+            view.setContextMenuEnabled(false);
             view.setMinSize(500, 400);
             view.setPrefSize(500, 400);
             final WebEngine eng = view.getEngine();
-            eng.load("http://metrical.name/finger.php");
-            final TextField userid = new TextField("enter identity");
+            eng.load("http://metrical.name/findex.php");
+            final TextField userid = new TextField("");
             userid.setMaxHeight(Double.MAX_VALUE);
-            final TextField loc = new TextField("enter location");
+            final TextField loc = new TextField("");
             loc.setMaxHeight(Double.MAX_VALUE);
             Button goButton = new Button("Go");
             goButton.setDefaultButton(true);
